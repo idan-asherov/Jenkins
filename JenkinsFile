@@ -42,4 +42,13 @@ pipeline {
       }
 
    }
+
+   post {
+      success {
+         echo "ה-pipeline סיים בהצלחה"
+      }
+      failure {
+         echo "ה-pipeline נכשל"
+      }
+   }
 }

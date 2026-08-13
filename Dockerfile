@@ -1,16 +1,6 @@
-FROM node:22-alpine
+FROM jenkins/jenkins:lts-jdk17
 
-WORKDIR /app
+USER root
 
-COPY package*.json ./
+RUN apt-get update && apt-get install -y docker.io
 
-RUN npm ci --omit=dev
-
-COPY . .
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD node -e "fetch('http://localhost:8000/health').then(res => process.exit(res.ok ? 0 : 1)).catch(() => process.exit(1))"
-
-CMD ["npm", "start"]
