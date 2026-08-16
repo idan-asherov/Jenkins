@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "test": "node --test",
-    "build": "echo \"Building image...\" && npm ci",
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
