@@ -11,7 +11,6 @@ const greets = [
   "You have a beutiful kikikiki.",
   "You have a beutiful kikikiki.",
   "You are blessed with goodness.",
-  "",
 ];
 
 function randomGreets() {
