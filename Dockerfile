@@ -1,6 +1,10 @@
-FROM jenkins/jenkins:lts-jdk17
+FROM node:20-alpine
+WORKDIR  /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY . .
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD node -e "fetch('http://localhost:8000/health').then(res => process.exit!(res.ok ? 0 : 1)).catch(() => process(1))"
 
-USER root
-
-RUN apt-get update && apt-get install -y docker.io
-
+CMD [ "node", "app.js" ]
